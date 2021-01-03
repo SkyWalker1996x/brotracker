@@ -25,7 +25,6 @@ const tableHead = [
 const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
   const { tasks, deleteTask} = props;
-  console.log(props);
 
   return (
     <TableContainer className={classes.table}>
