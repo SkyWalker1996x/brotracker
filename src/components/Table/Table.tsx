@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+// actions
+import { addTask, deleteTask } from '../../store/actions';
+//M-UI
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -18,43 +22,10 @@ const tableHead = [
   { id: 7, label: 'Delete' },
 ];
 
-const rows = [
-  {
-    id: 1,
-    number: '1',
-    task: 'lorem ipsum',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-  {
-    id: 2,
-    number: '2',
-    task: 'lorem ipsum',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-  {
-    id: 3,
-    number: '3',
-    task: 'lorem ipsum',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-  {
-    id: 4,
-    number: '4',
-    task: 'lorem ipsum',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-];
-
-const TimerTable = () => {
+const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
+  const { tasks, deleteTask} = props;
+  console.log(props);
 
   return (
     <TableContainer className={classes.table}>
@@ -77,19 +48,27 @@ const TimerTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => {
-            const { id } = row;
+          {tasks.map((task: any, index: number) => {
+            const { id } = task;
 
             return (
               <TableRow className={classes.tableRow} key={id}>
-                {Object.keys(row)
+                <TableCell className={classes.tableCell} align="center">
+                  {index + 1}
+                </TableCell>
+
+                {Object.keys(task)
                   .filter((item) => item !== 'id')
-                  .map((item: string) => {
+                  .map((item: string, index) => {
                     return (
-                      <TableCell align="center" className={classes.tableCell}>
+                      <TableCell
+                        key={id + index}
+                        align="center"
+                        className={classes.tableCell}
+                      >
                         {
                           // @ts-ignore
-                          row[item]
+                          task[item]
                         }
                       </TableCell>
                     );
@@ -101,7 +80,11 @@ const TimerTable = () => {
                   </Button>
                 </TableCell>
                 <TableCell align="center">
-                  <Button variant="contained" className={classes.tableButton}>
+                  <Button
+                    variant="contained"
+                    className={classes.tableButton}
+                    onClick={() => deleteTask(id)}
+                  >
                     Delete
                   </Button>
                 </TableCell>
@@ -114,4 +97,13 @@ const TimerTable = () => {
   );
 };
 
-export default TimerTable;
+const mapStateToProps = (state: any) => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  addTask,
+  deleteTask,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimerTable);
