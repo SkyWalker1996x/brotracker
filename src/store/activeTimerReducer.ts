@@ -1,17 +1,15 @@
-import { INACTIVE_TIMER, ACTIVE_TIMER } from './types';
+import { INACTIVATE_TIMER, ACTIVATE_TIMER } from './types';
 
-const initialState = {
-  active: false,
-};
+const initialState = false;
 
 export const activeTimerReducer = (state = initialState, action: any) => {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
-    case ACTIVE_TIMER:
-      return { ...state, active: payload };
-    case INACTIVE_TIMER:
-      return { ...state, active: payload };
+    case ACTIVATE_TIMER:
+      return true;
+    case INACTIVATE_TIMER:
+      return false;
     default:
       return state;
   }

@@ -1,4 +1,10 @@
-import {ADD_TASK, DELETE_TASK, SET_TASK_NAME, ACTIVE_TIMER, INACTIVE_TIMER} from './types';
+import {
+  ADD_TASK,
+  DELETE_TASK,
+  SET_TASK_NAME,
+  ACTIVATE_TIMER,
+  INACTIVATE_TIMER,
+} from './types';
 
 export const addTask = (task: any) => {
   return {
@@ -21,16 +27,14 @@ export const setTaskName = (payload: any) => {
   };
 };
 
-export const activeTimer = (payload: any) => {
+export const activateTimer = () => {
   return {
-    type: ACTIVE_TIMER,
-    payload,
+    type: ACTIVATE_TIMER,
   };
 };
 
-export const inactiveTimer = (payload: any) => {
+export const inactivateTimer = () => {
   return {
-    type: INACTIVE_TIMER,
-    payload,
+    type: INACTIVATE_TIMER,
   };
 };
