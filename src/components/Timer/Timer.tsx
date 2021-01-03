@@ -1,10 +1,12 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import TimerInfo from './TimerInfo/TimerInfo';
+// M-UI
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { indigo} from '@material-ui/core/colors';
-import ColumnWrapper from "../../UI/wrappers/ColumnWrapper/ColumnWrapper";
+import { indigo } from '@material-ui/core/colors';
+// components
+import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
+import TaskInput from './TaskInput/TaskInput';
+import TimerInfo from './TimerInfo/TimerInfo';
 
 const useStyles = makeStyles({
   timerButton: {
@@ -19,7 +21,7 @@ const Timer = () => {
 
   return (
     <ColumnWrapper>
-      <TextField id="standard-basic" label="Name of your task" />
+      <TaskInput />
       <TimerInfo />
       <Button variant="contained" className={classes.timerButton}>
         Start
