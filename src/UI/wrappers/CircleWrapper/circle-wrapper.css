@@ -1,0 +1,11 @@
+.circle-wrapper {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px 0 rgba(0,0,0,0.9);
+    color: #3d5afe;
+    font-weight: 500;
+}

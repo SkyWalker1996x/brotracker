@@ -1,7 +1,8 @@
 import React from 'react';
+import CircleWrapper from '../../../UI/wrappers/CircleWrapper/CircleWrapper';
 
 const TimerInfo = () => {
-  return <div>01:42:55</div>;
+  return <CircleWrapper>01:42:55</CircleWrapper>;
 };
 
 export default TimerInfo;
