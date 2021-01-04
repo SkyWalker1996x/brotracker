@@ -9,6 +9,7 @@ import {
   addTask,
   startTask,
   finishTask,
+  clearCurrentTask,
 } from '../../../store/actions';
 
 const useStyles = makeStyles({
@@ -28,16 +29,14 @@ const TimerButton: React.FC = (props: any) => {
     addTask,
     startTask,
     finishTask,
+    clearCurrentTask,
     currentTask,
   } = props;
-
-  const dateNow = Date.now();
-
-  console.log(new Date(dateNow).getMinutes());
 
   useEffect(() => {
     if (!activeTimer && currentTask.timeEnd !== 0) {
       addTask(currentTask);
+      clearCurrentTask();
     }
   }, [activeTimer]);
 
@@ -63,7 +62,6 @@ const TimerButton: React.FC = (props: any) => {
 };
 
 const mapStateToProps = (state: any) => {
-  console.log(state);
   return { activeTimer: state.activeTimer, currentTask: state.currentTask };
 };
 
@@ -73,6 +71,7 @@ const mapDispatchToProps = {
   addTask,
   startTask,
   finishTask,
+  clearCurrentTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);

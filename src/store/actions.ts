@@ -6,6 +6,7 @@ import {
   INACTIVATE_TIMER,
   START_TASK,
   FINISH_TASK,
+  CLEAR_CURRENT_TASK,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -56,5 +57,12 @@ export const finishTask = () => {
   return {
     type: FINISH_TASK,
     payload: Date.now(),
+  };
+};
+
+export const clearCurrentTask = () => {
+  console.log(123);
+  return {
+    type: CLEAR_CURRENT_TASK,
   };
 };
