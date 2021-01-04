@@ -27,6 +27,46 @@ const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
   const { tasks, deleteTask } = props;
 
+  const filledTable = transformTasks(tasks).map((task: any) => {
+    const { id } = task;
+
+    return (
+      <TableRow className={classes.tableRow} key={id}>
+        {Object.keys(task)
+          .filter((item) => item !== 'id')
+          .map((item: string, index) => {
+            return (
+              <TableCell
+                key={id + index}
+                align="center"
+                className={classes.tableCell}
+              >
+                {
+                  // @ts-ignore
+                  task[item]
+                }
+              </TableCell>
+            );
+          })}
+
+        <TableCell align="center" className={classes.tableCell}>
+          <Button variant="contained" className={classes.tableButton}>
+            Info
+          </Button>
+        </TableCell>
+        <TableCell align="center">
+          <Button
+            variant="contained"
+            className={classes.tableButton}
+            onClick={() => deleteTask(id)}
+          >
+            Delete
+          </Button>
+        </TableCell>
+      </TableRow>
+    );
+  });
+
   return (
     <TableContainer className={classes.table}>
       <Table aria-label="simple table">
@@ -47,47 +87,7 @@ const TimerTable: React.FC = (props: any) => {
             })}
           </TableRow>
         </TableHead>
-        <TableBody>
-          {transformTasks(tasks).map((task: any) => {
-            const { id } = task;
-
-            return (
-              <TableRow className={classes.tableRow} key={id}>
-                {Object.keys(task)
-                  .filter((item) => item !== 'id')
-                  .map((item: string, index) => {
-                    return (
-                      <TableCell
-                        key={id + index}
-                        align="center"
-                        className={classes.tableCell}
-                      >
-                        {
-                          // @ts-ignore
-                          task[item]
-                        }
-                      </TableCell>
-                    );
-                  })}
-
-                <TableCell align="center" className={classes.tableCell}>
-                  <Button variant="contained" className={classes.tableButton}>
-                    Info
-                  </Button>
-                </TableCell>
-                <TableCell align="center">
-                  <Button
-                    variant="contained"
-                    className={classes.tableButton}
-                    onClick={() => deleteTask(id)}
-                  >
-                    Delete
-                  </Button>
-                </TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
+        <TableBody>{tasks.length === 0 ? 'empty' : filledTable}</TableBody>
       </Table>
     </TableContainer>
   );
