@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +10,7 @@ import {
   startTask,
   finishTask,
   clearCurrentTask,
+  updateTimeSpend,
 } from '../../../store/actions';
 
 const useStyles = makeStyles({
@@ -31,10 +32,20 @@ const TimerButton: React.FC = (props: any) => {
     finishTask,
     clearCurrentTask,
     currentTask,
+    updateTimeSpend,
   } = props;
 
+  let taskTimer: any = useRef();
+
   useEffect(() => {
+    if (activeTimer) {
+      taskTimer.current = setInterval(() => {
+        updateTimeSpend();
+      }, 1000);
+    }
+
     if (!activeTimer && currentTask.timeEnd !== 0) {
+      clearInterval(taskTimer.current);
       addTask(currentTask);
       clearCurrentTask();
     }
@@ -72,6 +83,7 @@ const mapDispatchToProps = {
   startTask,
   finishTask,
   clearCurrentTask,
+  updateTimeSpend,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);

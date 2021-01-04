@@ -7,6 +7,7 @@ import {
   START_TASK,
   FINISH_TASK,
   CLEAR_CURRENT_TASK,
+  UPDATE_TIME_SPEND,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -61,8 +62,14 @@ export const finishTask = () => {
 };
 
 export const clearCurrentTask = () => {
-  console.log(123);
   return {
     type: CLEAR_CURRENT_TASK,
+  };
+};
+
+export const updateTimeSpend = () => {
+  return {
+    type: UPDATE_TIME_SPEND,
+    payload: Date.now(),
   };
 };

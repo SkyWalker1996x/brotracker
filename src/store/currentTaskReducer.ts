@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import {
   CLEAR_CURRENT_TASK,
   FINISH_TASK,
@@ -36,10 +35,11 @@ export const currentTaskReducer = (state = initialState, action: any) => {
         timeEnd: 0,
         timeSpend: 0,
       };
-    /*case UPDATE_TIME_SPEND:
+    case UPDATE_TIME_SPEND:
       return {
+        ...state,
         timeSpend: payload - state.timeStart,
-      };*/
+      };
     default:
       return state;
   }
