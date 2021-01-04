@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 // actions
 import { addTask, deleteTask } from '../../store/actions';
 //M-UI
@@ -25,10 +26,10 @@ const tableHead = [
 
 const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
-  const { tasks, deleteTask } = props;
+  const { tasks, deleteTask, history } = props;
 
   const filledTable = transformTasks(tasks).map((task: any) => {
-    const { id } = task;
+    const { id, number } = task;
 
     return (
       <TableRow className={classes.tableRow} key={id}>
@@ -50,7 +51,13 @@ const TimerTable: React.FC = (props: any) => {
           })}
 
         <TableCell align="center" className={classes.tableCell}>
-          <Button variant="contained" className={classes.tableButton}>
+          <Button
+            variant="contained"
+            className={classes.tableButton}
+            onClick={() => {
+              history.push(`/task/${number}`);
+            }}
+          >
             Info
           </Button>
         </TableCell>
@@ -102,4 +109,6 @@ const mapDispatchToProps = {
   deleteTask,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimerTable);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TimerTable)
+);
