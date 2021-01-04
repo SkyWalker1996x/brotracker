@@ -1,16 +1,14 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
-import TimerTable from './components/Table/Table';
-import Timer from './components/Timer/Timer';
-import ColumnWrapper from './UI/wrappers/ColumnWrapper/ColumnWrapper';
+import Main from './pages/Main/Main';
 
 const App: React.FC = () => {
   return (
-    <ColumnWrapper>
-      <h1>BroTracker task</h1>
-      <Timer />
-      <TimerTable />
-    </ColumnWrapper>
+    <>
+      <Route exact path="/" component={Main} />
+      <Route path="/task/:number" />
+    </>
   );
 };
 
