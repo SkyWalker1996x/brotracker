@@ -18,8 +18,8 @@ export const extractTime = (dateInMS: number) => {
 
 export const extractSpendTime = (timeInMS: number) => {
   const hours = toDecimal(Math.floor(timeInMS / 3600000));
-  const minutes = toDecimal(Math.floor(timeInMS / 60000));
-  const seconds = toDecimal(Math.floor(timeInMS / 1000));
+  const minutes = toDecimal(Math.floor(timeInMS / 60000) % 60);
+  const seconds = toDecimal(Math.floor(timeInMS / 1000) % 60);
 
   return `${hours}:${minutes}:${seconds}`;
 };
