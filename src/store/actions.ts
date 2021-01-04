@@ -5,6 +5,7 @@ import {
   ACTIVATE_TIMER,
   INACTIVATE_TIMER,
   START_TASK,
+  FINISH_TASK,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -48,5 +49,12 @@ export const startTask = () => {
       id: uuidv4(),
       timeStart: Date.now(),
     },
+  };
+};
+
+export const finishTask = () => {
+  return {
+    type: FINISH_TASK,
+    payload: Date.now(),
   };
 };

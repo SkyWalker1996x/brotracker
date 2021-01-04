@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import {
   inactivateTimer,
   addTask,
   startTask,
+  finishTask,
 } from '../../../store/actions';
 
 const useStyles = makeStyles({
@@ -21,22 +22,29 @@ const useStyles = makeStyles({
 const TimerButton: React.FC = (props: any) => {
   const classes = useStyles();
   const {
-    currentTask,
     activeTimer,
     activateTimer,
     inactivateTimer,
     addTask,
     startTask,
+    finishTask,
+    currentTask,
   } = props;
 
   const dateNow = Date.now();
 
   console.log(new Date(dateNow).getMinutes());
 
+  useEffect(() => {
+    if (!activeTimer && currentTask.timeEnd !== 0) {
+      addTask(currentTask);
+    }
+  }, [activeTimer]);
+
   const listener = activeTimer
     ? () => {
+        finishTask();
         inactivateTimer();
-        addTask(currentTask);
       }
     : () => {
         activateTimer();
@@ -64,6 +72,7 @@ const mapDispatchToProps = {
   inactivateTimer,
   addTask,
   startTask,
+  finishTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);
