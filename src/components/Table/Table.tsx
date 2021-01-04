@@ -11,6 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Button } from '@material-ui/core';
 import { useStyles } from './styles';
+import { transformTasks } from '../../utils';
 
 const tableHead = [
   { id: 1, label: '#' },
@@ -24,7 +25,7 @@ const tableHead = [
 
 const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
-  const { tasks, deleteTask} = props;
+  const { tasks, deleteTask } = props;
 
   return (
     <TableContainer className={classes.table}>
@@ -47,15 +48,11 @@ const TimerTable: React.FC = (props: any) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {tasks.map((task: any, index: number) => {
+          {transformTasks(tasks).map((task: any) => {
             const { id } = task;
 
             return (
               <TableRow className={classes.tableRow} key={id}>
-                <TableCell className={classes.tableCell} align="center">
-                  {index + 1}
-                </TableCell>
-
                 {Object.keys(task)
                   .filter((item) => item !== 'id')
                   .map((item: string, index) => {

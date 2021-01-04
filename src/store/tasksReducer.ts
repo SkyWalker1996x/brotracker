@@ -7,28 +7,7 @@ const initialState = [
     timeStart: '11:28:14',
     timeEnd: '11:31:23',
     timeSpend: '00:03:08',
-  },
-  {
-    id: 2,
-    task: 'Smt 2',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-  {
-    id: 3,
-    task: 'Smt 3',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
-  {
-    id: 4,
-    task: 'Smt 4',
-    timeStart: '11:28:14',
-    timeEnd: '11:31:23',
-    timeSpend: '00:03:08',
-  },
+  }
 ];
 
 export const tasksReducer = (state = initialState, action: any) => {
