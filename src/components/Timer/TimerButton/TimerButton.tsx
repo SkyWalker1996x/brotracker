@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { indigo } from '@material-ui/core/colors';
-import { activateTimer, inactivateTimer } from '../../../store/actions';
+import {
+  activateTimer,
+  inactivateTimer,
+  addTask,
+} from '../../../store/actions';
 
 const useStyles = makeStyles({
   timerButton: {
@@ -15,16 +19,28 @@ const useStyles = makeStyles({
 
 const TimerButton: React.FC = (props: any) => {
   const classes = useStyles();
-  console.log(props);
-  const { activeTimer, activateTimer, inactivateTimer } = props;
+  const {
+    currentTask,
+    activeTimer,
+    activateTimer,
+    inactivateTimer,
+    addTask,
+  } = props;
+
+  const listener = activeTimer
+    ? () => {
+        inactivateTimer();
+        addTask(currentTask);
+      }
+    : () => {
+        activateTimer();
+      };
 
   return (
     <Button
       variant="contained"
       className={classes.timerButton}
-      onClick={() => {
-        activeTimer ? inactivateTimer() : activateTimer();
-      }}
+      onClick={listener}
     >
       {activeTimer ? 'Stop' : 'Start'}
     </Button>
@@ -32,12 +48,14 @@ const TimerButton: React.FC = (props: any) => {
 };
 
 const mapStateToProps = (state: any) => {
-  return { activeTimer: state.activeTimer };
+  console.log(state);
+  return { activeTimer: state.activeTimer, currentTask: state.currentTask };
 };
 
 const mapDispatchToProps = {
   activateTimer,
   inactivateTimer,
+  addTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);
