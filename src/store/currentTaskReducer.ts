@@ -12,9 +12,9 @@ export const currentTaskReducer = (state = initialState, action: any) => {
   switch (type) {
     case 'SET_TASK_NAME':
       return { ...state, taskName: payload };
-    /*case 'SET_TIME_START':
-      return { ...state, timeStart: payload };
-    case 'SET_TIME_END':
+    case 'START_TASK':
+      return { ...state, ...payload };
+    /*case 'SET_TIME_END':
       return { ...state, timeEnd: payload };*/
     default:
       return state;

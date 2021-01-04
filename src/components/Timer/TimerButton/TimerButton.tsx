@@ -7,6 +7,7 @@ import {
   activateTimer,
   inactivateTimer,
   addTask,
+  startTask,
 } from '../../../store/actions';
 
 const useStyles = makeStyles({
@@ -25,7 +26,12 @@ const TimerButton: React.FC = (props: any) => {
     activateTimer,
     inactivateTimer,
     addTask,
+    startTask,
   } = props;
+
+  const dateNow = Date.now();
+
+  console.log(new Date(dateNow).getMinutes());
 
   const listener = activeTimer
     ? () => {
@@ -34,6 +40,7 @@ const TimerButton: React.FC = (props: any) => {
       }
     : () => {
         activateTimer();
+        startTask();
       };
 
   return (
@@ -56,6 +63,7 @@ const mapDispatchToProps = {
   activateTimer,
   inactivateTimer,
   addTask,
+  startTask,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);
