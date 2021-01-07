@@ -35,3 +35,10 @@ export const transformTasks = (tasks: any) => {
     };
   });
 };
+
+export const muiProps = (index: any) => {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
