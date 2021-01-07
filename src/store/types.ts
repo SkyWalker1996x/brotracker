@@ -7,3 +7,4 @@ export const START_TASK = 'START_TASK';
 export const FINISH_TASK = 'FINISH_TASK';
 export const CLEAR_CURRENT_TASK = 'CLEAR_CURRENT_TASK';
 export const UPDATE_TIME_SPEND = 'UPDATE_TIME_SPEND';
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';

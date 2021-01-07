@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // MUI-components
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -9,14 +10,16 @@ import TabPanel from './TabPanel/TabPanel';
 // styles
 import { useStyles } from './styles';
 // utils
-import { muiProps } from '../../utils';
+import { muiTabProps } from '../../utils';
+// actions
+import { setActiveTab } from '../../store/actions';
 
-const TimerTabs = () => {
+const TimerTabs: React.FC = (props: any) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState('TABLE_LOG');
+  const { activeTab, setActiveTab } = props;
 
-  const handleChange = (event: any, newValue: any) => {
-    setValue(newValue);
+  const handleSetTab = (event: any, value: any) => {
+    setActiveTab(value);
   };
 
   return (
@@ -24,32 +27,40 @@ const TimerTabs = () => {
       <AppBar position="static">
         <Tabs
           className={classes.tabs}
-          value={value}
-          onChange={handleChange}
+          value={activeTab}
+          onChange={handleSetTab}
           variant="fullWidth"
         >
           <Tab
             label="TABLE LOG"
             fullWidth={true}
             value="TABLE_LOG"
-            {...muiProps('TABLE_LOG')}
+            {...muiTabProps('TABLE_LOG')}
           />
           <Tab
             label="TASKS CHART"
             fullWidth={true}
             value="TASKS_CHART"
-            {...muiProps('TASKS_CHART')}
+            {...muiTabProps('TASKS_CHART')}
           />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index="TABLE_LOG">
+      <TabPanel value={activeTab} index="TABLE_LOG">
         <TimerTable />
       </TabPanel>
-      <TabPanel value={value} index="TASKS_CHART">
+      <TabPanel value={activeTab} index="TASKS_CHART">
         TASKS CHART
       </TabPanel>
     </div>
   );
 };
 
-export default TimerTabs;
+const mapStateToProps = (state: any) => {
+  return { activeTab: state.activeTab };
+};
+
+const mapDispatchToProps = {
+  setActiveTab,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TimerTabs);

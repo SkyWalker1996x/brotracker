@@ -8,6 +8,7 @@ import {
   FINISH_TASK,
   CLEAR_CURRENT_TASK,
   UPDATE_TIME_SPEND,
+  SET_ACTIVE_TAB,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -71,5 +72,12 @@ export const updateTimeSpend = () => {
   return {
     type: UPDATE_TIME_SPEND,
     payload: Date.now(),
+  };
+};
+
+export const setActiveTab = (payload: any) => {
+  return {
+    type: SET_ACTIVE_TAB,
+    payload,
   };
 };
