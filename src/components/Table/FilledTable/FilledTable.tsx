@@ -1,13 +1,29 @@
 import React from 'react';
-import { transformTasks } from '../../../utils';
-import TableRow from '@material-ui/core/TableRow';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+// M-UI components
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 import { Button } from '@material-ui/core';
 import { useStyles } from '../styles';
-import { withRouter } from 'react-router-dom';
-import TableBody from '@material-ui/core/TableBody';
-import { addTask, deleteTask } from '../../../store/actions';
-import { connect } from 'react-redux';
+// actions
+import { deleteTask } from '../../../store/actions';
+// utils
+import { transformTasks } from '../../../utils';
+
+const tableHead = [
+  { id: 1, label: '#' },
+  { id: 2, label: 'Task' },
+  { id: 3, label: 'Time start' },
+  { id: 4, label: 'Time end' },
+  { id: 5, label: 'Time spend' },
+  { id: 6, label: 'Info' },
+  { id: 7, label: 'Delete' },
+];
 
 const FilledTable = (props: any) => {
   const classes = useStyles();
@@ -59,15 +75,37 @@ const FilledTable = (props: any) => {
     );
   });
 
-  return <TableBody>{filledTable}</TableBody>;
+  return (
+    <TableContainer className={classes.table}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {tableHead.map((item) => {
+              const { id, label } = item;
+
+              return (
+                <TableCell
+                  align="center"
+                  key={id}
+                  className={classes.tableHeadCell}
+                >
+                  {label}
+                </TableCell>
+              );
+            })}
+          </TableRow>
+        </TableHead>
+        <TableBody>{filledTable}</TableBody>
+      </Table>
+    </TableContainer>
+  );
 };
 
 const mapStateToProps = (state: any) => {
-  return { tasks: state.tasks };
+  return state;
 };
 
 const mapDispatchToProps = {
-  addTask,
   deleteTask,
 };
 
