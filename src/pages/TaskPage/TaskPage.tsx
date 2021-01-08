@@ -1,47 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// components
+import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
+// MUI-components
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
-import { transformTasks } from '../../utils';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import { indigo } from '@material-ui/core/colors';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
-
-const toSentenceText = (camelCase: string) => {
-  const result = camelCase.replace(/([A-Z])/g, ' $1');
-  return result.charAt(0).toUpperCase() + result.slice(1);
-};
-
-const toPageInfo = (task: any) => {
-  const { taskName, timeStart, timeEnd, timeSpend } = task;
-
-  return {
-    taskName,
-    timeSpend,
-    timeStart,
-    timeEnd,
-  };
-};
-
-const useStyles = makeStyles({
-  card: {
-    marginTop: '5px',
-    minWidth: '320px',
-    color: indigo['A400'],
-    textAlign: 'center',
-  },
-  button: {
-    color: indigo['A400'],
-    borderColor: indigo['A400'],
-  },
-});
+// utils
+import { toPageInfo, toSentenceText, transformTasks } from '../../utils';
+// styles
+import { useStyles } from './mui-styles';
 
 const TaskPage = (props: any) => {
   const classes = useStyles();

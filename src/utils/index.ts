@@ -41,4 +41,22 @@ export const muiTabProps = (index: any) => {
     id: `simple-tab-${index}`,
     'aria-controls': `simple-tabpanel-${index}`,
   };
-}
+};
+
+export const toSentenceText = (camelCase: string) => {
+  const result = camelCase.replace(/([A-Z])/g, ' $1');
+  const capitalLetters = result.charAt(0).toUpperCase() + result.slice(1);
+
+  return capitalLetters;
+};
+
+export const toPageInfo = (task: any) => {
+  const { taskName, timeStart, timeEnd, timeSpend } = task;
+
+  return {
+    taskName,
+    timeSpend,
+    timeStart,
+    timeEnd,
+  };
+};
