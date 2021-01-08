@@ -1,8 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-// actions
-import { addTask, deleteTask } from '../../store/actions';
 //M-UI
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,9 +7,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Button } from '@material-ui/core';
+// styles
 import { useStyles } from './styles';
-import { transformTasks } from '../../utils';
+
+import FilledTable from './FilledTable/FilledTable';
 
 const tableHead = [
   { id: 1, label: '#' },
@@ -26,53 +24,7 @@ const tableHead = [
 
 const TimerTable: React.FC = (props: any) => {
   const classes = useStyles();
-  const { tasks, deleteTask, history } = props;
-
-  const filledTable = transformTasks(tasks).map((task: any) => {
-    const { id, number } = task;
-
-    return (
-      <TableRow className={classes.tableRow} key={id}>
-        {Object.keys(task)
-          .filter((item) => item !== 'id')
-          .map((item: string, index) => {
-            return (
-              <TableCell
-                key={id + index}
-                align="center"
-                className={classes.tableCell}
-              >
-                {
-                  // @ts-ignore
-                  task[item]
-                }
-              </TableCell>
-            );
-          })}
-
-        <TableCell align="center" className={classes.tableCell}>
-          <Button
-            variant="contained"
-            className={classes.tableButton}
-            onClick={() => {
-              history.push(`/task/${number}`);
-            }}
-          >
-            Info
-          </Button>
-        </TableCell>
-        <TableCell align="center">
-          <Button
-            variant="contained"
-            className={classes.tableButton}
-            onClick={() => deleteTask(id)}
-          >
-            Delete
-          </Button>
-        </TableCell>
-      </TableRow>
-    );
-  });
+  const { tasks } = props;
 
   return (
     <TableContainer className={classes.table}>
@@ -94,21 +46,14 @@ const TimerTable: React.FC = (props: any) => {
             })}
           </TableRow>
         </TableHead>
-        <TableBody>{tasks.length === 0 ? 'empty' : filledTable}</TableBody>
+        {tasks.length === 0 ? <TableBody>'empty'</TableBody> : <FilledTable />}
       </Table>
     </TableContainer>
   );
 };
 
 const mapStateToProps = (state: any) => {
-  return state;
+  return { tasks: state.tasks };
 };
 
-const mapDispatchToProps = {
-  addTask,
-  deleteTask,
-};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(TimerTable)
-);
+export default connect(mapStateToProps)(TimerTable);
