@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // components
 import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
 // MUI-components
@@ -48,14 +49,16 @@ const TaskPage = (props: any) => {
           </List>
         </CardContent>
         <CardActions>
-          <Button
-            size="small"
-            variant="outlined"
-            className={classes.button}
-            endIcon={<ArrowForwardIcon />}
-          >
-            To Main Page
-          </Button>
+          <Link to="/">
+            <Button
+              size="small"
+              variant="outlined"
+              className={classes.button}
+              endIcon={<ArrowForwardIcon />}
+            >
+              To Main Page
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     </ColumnWrapper>
