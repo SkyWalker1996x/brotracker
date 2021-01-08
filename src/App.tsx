@@ -8,6 +8,7 @@ const App: React.FC = () => {
   return (
     <>
       <Route exact path="/" component={Main} />
+      <Route exact path="/tasks_chart" component={Main} />
       <Route
         path="/task/:number"
         render={({ match }) => {

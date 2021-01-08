@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 // MUI-components
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -16,7 +17,7 @@ import { setActiveTab } from '../../store/actions';
 
 const TimerTabs: React.FC = (props: any) => {
   const classes = useStyles();
-  const { activeTab, setActiveTab } = props;
+  const { activeTab, setActiveTab, history } = props;
 
   const handleSetTab = (event: any, value: any) => {
     setActiveTab(value);
@@ -36,12 +37,18 @@ const TimerTabs: React.FC = (props: any) => {
             fullWidth={true}
             value="TABLE_LOG"
             {...muiTabProps('TABLE_LOG')}
+            onClick={() => {
+              history.push('/');
+            }}
           />
           <Tab
             label="TASKS CHART"
             fullWidth={true}
             value="TASKS_CHART"
             {...muiTabProps('TASKS_CHART')}
+            onClick={() => {
+              history.push('/tasks_chart');
+            }}
           />
         </Tabs>
       </AppBar>
@@ -63,4 +70,6 @@ const mapDispatchToProps = {
   setActiveTab,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TimerTabs);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TimerTabs)
+);
