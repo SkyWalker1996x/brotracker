@@ -1,12 +1,13 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Main from './pages/Main/Main';
 import TaskPage from './pages/TaskPage/TaskPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 const App: React.FC = () => {
   return (
-    <>
+    <Switch>
       <Route exact path="/" component={Main} />
       <Route exact path="/tasks_chart" component={Main} />
       <Route
@@ -17,7 +18,9 @@ const App: React.FC = () => {
           return <TaskPage number={number} />;
         }}
       />
-    </>
+
+      <Route render={() => <NotFoundPage />} />
+    </Switch>
   );
 };
 
