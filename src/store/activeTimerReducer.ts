@@ -1,8 +1,12 @@
 import { INACTIVATE_TIMER, ACTIVATE_TIMER } from './types';
+import { ActiveTimer, Action } from '../interfaces';
 
 const initialState = false;
 
-export const activeTimerReducer = (state = initialState, action: any) => {
+export const activeTimerReducer = (
+  state: ActiveTimer = initialState,
+  action: Action
+) => {
   const { type } = action;
 
   switch (type) {

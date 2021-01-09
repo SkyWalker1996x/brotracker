@@ -1,3 +1,8 @@
+export interface Action {
+  type: string;
+  payload: any;
+}
+
 export interface CurrentTask {
   id: string;
   taskName: string;
@@ -6,7 +11,4 @@ export interface CurrentTask {
   timeSpend: number;
 }
 
-export interface CurrentTaskAction {
-  type: string;
-  payload: any;
-}
+export type ActiveTimer = boolean;
