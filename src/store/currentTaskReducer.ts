@@ -5,7 +5,9 @@ import {
   START_TASK,
   UPDATE_TIME_SPEND,
 } from './types';
-const initialState = {
+import { CurrentTask, CurrentTaskAction } from '../interfaces';
+
+const initialState: CurrentTask = {
   id: '',
   taskName: '',
   timeStart: 0,
@@ -13,7 +15,7 @@ const initialState = {
   timeSpend: 0,
 };
 
-export const currentTaskReducer = (state = initialState, action: any) => {
+export const currentTaskReducer = (state = initialState, action: CurrentTaskAction) => {
   const { type, payload } = action;
 
   switch (type) {
