@@ -9,17 +9,19 @@ import {
   CLEAR_CURRENT_TASK,
   UPDATE_TIME_SPEND,
   SET_ACTIVE_TAB,
+  SHOW_WARNING,
+  CLOSE_WARNING,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
 import {
   ActivateTimer,
   AddTask,
-  ClearCurrentTask,
+  ClearCurrentTask, CloseWarning,
   DeleteTask,
   FinishTask,
   InactivateTimer,
   SetActiveTab,
-  SetTaskName,
+  SetTaskName, ShowWarning,
   StartTask,
   UpdateTimeSpend,
 } from '../interfaces';
@@ -91,5 +93,17 @@ export const setActiveTab: SetActiveTab = (tab) => {
   return {
     type: SET_ACTIVE_TAB,
     payload: tab,
+  };
+};
+
+export const showWarning:ShowWarning = () => {
+  return {
+    type: SHOW_WARNING,
+  };
+};
+
+export const closeWarning:CloseWarning = () => {
+  return {
+    type: CLOSE_WARNING,
   };
 };

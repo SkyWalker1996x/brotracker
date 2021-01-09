@@ -17,21 +17,28 @@ export type ActiveTimer = boolean;
 
 export type ActiveTab = string;
 
+export type EmptyTask = boolean;
+
 export type Tasks = Array<Task>;
 
 export type UpdateTimeSpend = () => { type: ActionType, payload: number };
 
 export type ClearCurrentTask = () => { type: ActionType };
 
+export type ActivateTimer = () => { type: ActionType };
+
 export type InactivateTimer = () => { type: ActionType };
 
-export type ActivateTimer = () => { type: ActionType };
+export type ShowWarning = () => { type: ActionType };
+
+export type CloseWarning = () => { type: ActionType };
 
 export interface State {
   tasks: Tasks,
   currentTask: Task,
   activeTimer: ActiveTimer,
   activeTab: ActiveTab,
+  emptyTask: EmptyTask,
 }
 
 export type StartTask = () => {
