@@ -3,7 +3,7 @@ import React from 'react';
 import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
 import Timer from '../../components/Timer/Timer';
 import TimerTabs from '../../components/Tabs/Tabs';
-import ModalWarning from '../../components/ModalWarning/ModalWarning';
+import EmptyTaskWarning from '../../components/EmptyTaskWarning/EmptyTaskWarning';
 
 const Main = () => {
   return (
@@ -11,7 +11,7 @@ const Main = () => {
       <h1>BroTracker task</h1>
       <Timer />
       <TimerTabs />
-      <ModalWarning />
+      <EmptyTaskWarning />
     </ColumnWrapper>
   );
 };
