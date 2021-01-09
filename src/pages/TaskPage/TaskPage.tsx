@@ -17,6 +17,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { toPageInfo, toSentenceText, transformTasks } from '../../utils';
 // styles
 import { useStyles } from './mui-styles';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const TaskPage = (props: any) => {
   const classes = useStyles();
@@ -25,6 +26,10 @@ const TaskPage = (props: any) => {
   const pageTask = transformTasks(tasks).find(
     (item: any) => item.number === +number
   );
+
+  if (!pageTask) {
+    return <NotFoundPage />;
+  }
 
   return (
     <ColumnWrapper>
