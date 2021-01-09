@@ -3,17 +3,28 @@ import { connect } from 'react-redux';
 // MUI-components
 import { Button } from '@material-ui/core';
 // actions
-import { activateTimer, inactivateTimer } from '../../../store/actions';
+import {
+  activateTimer,
+  inactivateTimer,
+  showWarning,
+} from '../../../store/actions';
 // styles
 import { useStyles } from './mui-styles';
+import { State } from '../../../interfaces';
 
 const TimerButton: React.FC = (props: any) => {
   const classes = useStyles();
-  const { activeTimer, activateTimer, inactivateTimer } = props;
+  const {
+    activeTimer,
+    taskName,
+    activateTimer,
+    inactivateTimer,
+    showWarning,
+  } = props;
 
   const listener = activeTimer
     ? () => {
-        inactivateTimer();
+        taskName === '' ? showWarning() : inactivateTimer();
       }
     : () => {
         activateTimer();
@@ -30,13 +41,17 @@ const TimerButton: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { activeTimer: state.activeTimer };
+const mapStateToProps = (state: State) => {
+  return {
+    activeTimer: state.activeTimer,
+    taskName: state.currentTask.taskName,
+  };
 };
 
 const mapDispatchToProps = {
   activateTimer,
   inactivateTimer,
+  showWarning,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimerButton);
