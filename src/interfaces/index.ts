@@ -3,7 +3,7 @@ export interface Action {
   payload: any;
 }
 
-export interface CurrentTask {
+export interface Task {
   id: string;
   taskName: string;
   timeStart: number;
@@ -13,3 +13,5 @@ export interface CurrentTask {
 
 export type ActiveTimer = boolean;
 export type ActiveTab = string;
+
+export type Tasks = Array<Task>;
