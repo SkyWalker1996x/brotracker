@@ -11,41 +11,53 @@ import {
   SET_ACTIVE_TAB,
 } from './types';
 import { v4 as uuidv4 } from 'uuid';
+import {
+  ActivateTimer,
+  AddTask,
+  ClearCurrentTask,
+  DeleteTask,
+  FinishTask,
+  InactivateTimer,
+  SetActiveTab,
+  SetTaskName,
+  StartTask,
+  UpdateTimeSpend,
+} from '../interfaces';
 
-export const addTask = (task: any) => {
+export const addTask: AddTask = (task) => {
   return {
     type: ADD_TASK,
     payload: task,
   };
 };
 
-export const deleteTask = (id: any) => {
+export const deleteTask: DeleteTask = (id) => {
   return {
     type: DELETE_TASK,
     payload: id,
   };
 };
 
-export const setTaskName = (payload: any) => {
+export const setTaskName: SetTaskName = (name) => {
   return {
     type: SET_TASK_NAME,
-    payload,
+    payload: name,
   };
 };
 
-export const activateTimer = () => {
+export const activateTimer: ActivateTimer = () => {
   return {
     type: ACTIVATE_TIMER,
   };
 };
 
-export const inactivateTimer = () => {
+export const inactivateTimer: InactivateTimer = () => {
   return {
     type: INACTIVATE_TIMER,
   };
 };
 
-export const startTask = () => {
+export const startTask: StartTask = () => {
   return {
     type: START_TASK,
     payload: {
@@ -55,29 +67,29 @@ export const startTask = () => {
   };
 };
 
-export const finishTask = () => {
+export const finishTask: FinishTask = () => {
   return {
     type: FINISH_TASK,
     payload: Date.now(),
   };
 };
 
-export const clearCurrentTask = () => {
+export const clearCurrentTask: ClearCurrentTask = () => {
   return {
     type: CLEAR_CURRENT_TASK,
   };
 };
 
-export const updateTimeSpend = () => {
+export const updateTimeSpend: UpdateTimeSpend = () => {
   return {
     type: UPDATE_TIME_SPEND,
     payload: Date.now(),
   };
 };
 
-export const setActiveTab = (payload: any) => {
+export const setActiveTab: SetActiveTab = (tab) => {
   return {
     type: SET_ACTIVE_TAB,
-    payload,
+    payload: tab,
   };
 };

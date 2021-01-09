@@ -7,9 +7,10 @@ import {
   startTask,
   updateTimeSpend,
 } from './actions';
+import { State } from '../interfaces';
 
-const getTimerActive = (state: any) => state.activeTimer;
-const getCurrentTask = (state: any) => state.currentTask;
+const getTimerActive = (state: State) => state.activeTimer;
+const getCurrentTask = (state: State) => state.currentTask;
 
 function* workerActivateTimer() {
   yield put(startTask());
