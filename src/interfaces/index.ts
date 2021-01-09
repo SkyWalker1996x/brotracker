@@ -12,3 +12,4 @@ export interface CurrentTask {
 }
 
 export type ActiveTimer = boolean;
+export type ActiveTab = string;

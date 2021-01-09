@@ -1,6 +1,11 @@
+import { Action, ActiveTab } from '../interfaces';
+
 const initialState = 'TABLE_LOG';
 
-export const tabsReducer = (state = initialState, action: any) => {
+export const tabsReducer = (
+  state: ActiveTab = initialState,
+  action: Action
+) => {
   const { type, payload } = action;
 
   switch (type) {
