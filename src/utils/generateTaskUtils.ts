@@ -5,7 +5,7 @@ export const getRandomNumber = (min: number, max: number) => {
     return Math.floor(rand);
 };
 
-export const generateTasks = () => {
+export const generateRandomTasks = () => {
     const randomNumbers = getRandomNumber(10, 15);
 
     const todayInMS = Date.now();

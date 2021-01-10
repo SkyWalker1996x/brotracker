@@ -12,7 +12,7 @@ export const tasksReducer = (state: Tasks = initialState, action: Action) => {
     case DELETE_TASK:
       return [...state.filter((item) => item.id !== payload)];
     case GENERATE_TASKS:
-      return [...state, ...payload];
+      return [...payload];
     default:
       return state;
   }
