@@ -13,7 +13,7 @@ import { useStyles } from './styles';
 // utils
 import { muiTabProps } from '../../utils/muiUtils';
 // actions
-import { setActiveTab } from '../../store/actions';
+import { setActiveTab } from '../../store/actions/tabsActions';
 import TasksChart from '../TasksChart/TasksChart';
 
 const TimerTabs: React.FC = (props: any) => {

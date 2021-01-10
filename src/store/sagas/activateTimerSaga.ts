@@ -1,6 +1,6 @@
 import { delay, put, select, takeEvery } from 'redux-saga/effects';
 import { ACTIVATE_TIMER } from '../types';
-import { startTask, updateTimeSpend } from '../actions';
+import { startTask, updateTimeSpend } from '../actions/currentTaskActions';
 import { State } from '../../interfaces';
 
 const getTimerActive = (state: State) => state.activeTimer;

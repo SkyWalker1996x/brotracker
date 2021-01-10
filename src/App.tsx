@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // redux
 import { store } from './store';
-import { setActiveTab } from './store/actions';
+import { setActiveTab } from './store/actions/tabsActions';
 // components
 import Main from './pages/Main/Main';
 import TaskPage from './pages/TaskPage/TaskPage';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // actions
-import { closeWarning } from '../../store/actions';
+import { closeWarning } from '../../store/actions/emptyWarningActions';
 // types
 import { State } from '../../interfaces';
 // MUI-components

@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { Button } from '@material-ui/core';
 import { useStyles } from '../styles';
 // actions
-import { deleteTask } from '../../../store/actions';
+import { deleteTask } from '../../../store/actions/tasksActions';
 // utils
 import { transformTasks } from '../../../utils/taskManipulationUtils';
 

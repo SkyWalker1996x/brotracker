@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTaskName } from '../../../store/actions';
+import { setTaskName } from '../../../store/actions/currentTaskActions';
 import TextField from '@material-ui/core/TextField';
 import './mui-styles.css';
 

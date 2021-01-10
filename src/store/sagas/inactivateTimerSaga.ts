@@ -1,5 +1,6 @@
 import { put, select, takeEvery } from 'redux-saga/effects';
-import { addTask, clearCurrentTask, finishTask } from '../actions';
+import { clearCurrentTask, finishTask } from '../actions/currentTaskActions';
+import { addTask } from '../actions/tasksActions';
 import { INACTIVATE_TIMER } from '../types';
 import { State } from '../../interfaces';
 

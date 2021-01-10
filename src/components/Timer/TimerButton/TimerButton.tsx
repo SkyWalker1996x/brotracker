@@ -6,8 +6,8 @@ import { Button } from '@material-ui/core';
 import {
   activateTimer,
   inactivateTimer,
-  showWarning,
-} from '../../../store/actions';
+} from '../../../store/actions/activeTimerActions';
+import { showWarning } from '../../../store/actions/emptyWarningActions';
 // styles
 import { useStyles } from './mui-styles';
 import { State } from '../../../interfaces';
