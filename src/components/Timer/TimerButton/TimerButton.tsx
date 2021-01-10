@@ -24,7 +24,7 @@ const TimerButton: React.FC = (props: any) => {
 
   const listener = activeTimer
     ? () => {
-        taskName === '' ? showWarning() : inactivateTimer();
+        taskName.trim() === '' ? showWarning() : inactivateTimer();
       }
     : () => {
         activateTimer();
