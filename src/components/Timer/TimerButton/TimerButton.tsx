@@ -22,19 +22,16 @@ const TimerButton: React.FC = (props: any) => {
     showWarning,
   } = props;
 
-  const listener = activeTimer
-    ? () => {
-        taskName.trim() === '' ? showWarning() : inactivateTimer();
-      }
-    : () => {
-        activateTimer();
-      };
+  const inactivateListener =
+    taskName.trim() === '' ? showWarning : inactivateTimer;
+
+  const listener = activeTimer ? inactivateListener : activateTimer;
 
   return (
     <Button
       variant="contained"
       className={classes.timerButton}
-      onClick={listener}
+      onClick={() => listener()}
     >
       {activeTimer ? 'Stop' : 'Start'}
     </Button>
