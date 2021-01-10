@@ -8,7 +8,6 @@ import EmptyTaskWarning from '../../components/EmptyTaskWarning/EmptyTaskWarning
 const Main = () => {
   return (
     <ColumnWrapper>
-      <h1>BroTracker task</h1>
       <Timer />
       <TimerTabs />
       <EmptyTaskWarning />

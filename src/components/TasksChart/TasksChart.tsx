@@ -10,7 +10,8 @@ import {
   Legend,
 } from 'recharts';
 import { State } from '../../interfaces';
-
+import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
+import GenerateTaskButtonWrapper from '../../UI/wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
 
 const TasksChart = (props: any) => {
   const { tasks } = props;
@@ -24,24 +25,29 @@ const TasksChart = (props: any) => {
   });
 
   return (
-    <BarChart
-      width={900}
-      height={500}
-      data={tasksToChart}
-      margin={{
-        top: 25,
-        right: 10,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid />
-      <XAxis dataKey="taskName" />
-      <YAxis domain={[0, 90]} />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="timeSpend" fill="#8884d8" />
-    </BarChart>
+    <>
+      <BarChart
+        width={900}
+        height={500}
+        data={tasksToChart}
+        margin={{
+          top: 25,
+          right: 10,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid />
+        <XAxis dataKey="taskName" />
+        <YAxis domain={[0, 90]} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="timeSpend" fill="#8884d8" />
+      </BarChart>
+      <GenerateTaskButtonWrapper>
+        <GenerateTaskButton />
+      </GenerateTaskButtonWrapper>
+    </>
   );
 };
 
