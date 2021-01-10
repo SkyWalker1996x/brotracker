@@ -4,8 +4,8 @@ import {
   SET_TASK_NAME,
   START_TASK,
   UPDATE_TIME_SPEND,
-} from './types';
-import { Task, Action } from '../interfaces';
+} from '../types';
+import { Task, Action } from '../../interfaces';
 
 const initialState = {
   id: '',
