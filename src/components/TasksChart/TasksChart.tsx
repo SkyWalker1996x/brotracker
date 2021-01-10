@@ -37,12 +37,12 @@ const TasksChart = (props: any) => {
           bottom: 5,
         }}
       >
-        <CartesianGrid />
+        <CartesianGrid strokeDasharray="3 3"/>
         <XAxis dataKey="taskName" />
         <YAxis domain={[0, 90]} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="timeSpend" fill="#8884d8" />
+        <Bar dataKey="timeSpend" fill="#3d5afe" />
       </BarChart>
       <GenerateTaskButtonWrapper>
         <GenerateTaskButton />

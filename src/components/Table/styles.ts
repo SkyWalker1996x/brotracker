@@ -4,7 +4,7 @@ import { grey, indigo, lightBlue } from '@material-ui/core/colors';
 export const useStyles = makeStyles({
   table: {
     maxWidth: 900,
-    margin: '0 auto',
+    marginBottom: '25px',
   },
   tableHeadCell: {
     color: grey['400'],
