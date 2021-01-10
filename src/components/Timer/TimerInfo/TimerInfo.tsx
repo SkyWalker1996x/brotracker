@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// components
 import CircleWrapper from '../../../UI/wrappers/CircleWrapper/CircleWrapper';
-import { extractSpendTime } from '../../../utils';
+// utils
+import { extractSpendTime } from '../../../utils/timesManipulationUtils';
 
 const TimerInfo: React.FC = (props: any) => {
   const { timeSpend } = props;
