@@ -11,9 +11,14 @@ import { State } from '../interfaces';
 
 const getTimerActive = (state: State) => state.activeTimer;
 const getCurrentTask = (state: State) => state.currentTask;
+const getTaskTimeStart = (state: State) => state.currentTask.timeStart;
 
 function* workerActivateTimer() {
-  yield put(startTask());
+  const taskTimeStart = yield select(getTaskTimeStart);
+  if (taskTimeStart === 0) {
+    yield put(startTask());
+  }
+
   while (true) {
     const timerActive = yield select(getTimerActive);
     if (timerActive) {

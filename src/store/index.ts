@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './rootReducer';
 import { watcherActivateTimer, watcherInactivateTimer } from './sagas';
 import { loadFromLocalStorage, saveToLocalStorage } from '../utils';
+import { ACTIVATE_TIMER } from './types';
 
 const persistedState = loadFromLocalStorage();
 const sagaMiddleware = createSagaMiddleware();
@@ -21,3 +22,7 @@ store.subscribe(() => {
 
 sagaMiddleware.run(watcherActivateTimer);
 sagaMiddleware.run(watcherInactivateTimer);
+
+if (store.getState().activeTimer) {
+  store.dispatch({ type: ACTIVATE_TIMER, payload: '' });
+}
