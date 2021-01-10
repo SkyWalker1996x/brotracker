@@ -13,7 +13,7 @@ import { useStyles } from '../styles';
 // actions
 import { deleteTask } from '../../../store/actions';
 // utils
-import { transformTasks } from '../../../utils';
+import { transformTasks } from '../../../utils/taskManipulationUtils';
 
 const tableHead = [
   { id: 1, label: '#' },

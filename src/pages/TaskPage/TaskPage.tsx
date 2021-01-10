@@ -14,7 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 // utils
-import { toPageInfo, toSentenceText, transformTasks } from '../../utils';
+import { toPageInfo, toSentenceText, transformTasks } from '../../utils/taskManipulationUtils';
 // styles
 import { useStyles } from './mui-styles';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
