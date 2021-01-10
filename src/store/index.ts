@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './rootReducer';
 import { watcherActivateTimer, watcherInactivateTimer } from './sagas';
-import { loadFromLocalStorage, saveToLocalStorage } from '../utils';
+import { loadFromLocalStorage, saveToLocalStorage } from '../utils/localStorageUtils';
 import { ACTIVATE_TIMER } from './types';
 
 const persistedState = loadFromLocalStorage();
