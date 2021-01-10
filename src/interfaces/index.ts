@@ -33,8 +33,6 @@ export type ShowWarning = () => { type: ActionType };
 
 export type CloseWarning = () => { type: ActionType };
 
-export type ClearTasks = () => { type: ActionType };
-
 export interface State {
   tasks: Tasks,
   currentTask: Task,
@@ -73,7 +71,7 @@ export type DeleteTask = (id: string) => {
   payload: string,
 };
 
-export type InsertTasks = (tasks: Tasks) => {
+export type GenerateTasks = (tasks: Tasks) => {
   type: ActionType,
   payload: Tasks
 }

@@ -1,5 +1,5 @@
-import { AddTask, ClearTasks, DeleteTask, InsertTasks } from '../../interfaces';
-import { ADD_TASK, CLEAR_TASKS, DELETE_TASK, INSERT_TASKS } from '../types';
+import { AddTask, DeleteTask, GenerateTasks } from '../../interfaces';
+import { ADD_TASK, DELETE_TASK, GENERATE_TASKS } from '../types';
 
 export const addTask: AddTask = (task) => {
   return {
@@ -15,15 +15,9 @@ export const deleteTask: DeleteTask = (id) => {
   };
 };
 
-export const clearTasks: ClearTasks = () => {
+export const generateTasks: GenerateTasks = (tasks) => {
   return {
-    type: CLEAR_TASKS,
-  };
-};
-
-export const insertTasks: InsertTasks = (tasks) => {
-  return {
-    type: INSERT_TASKS,
+    type: GENERATE_TASKS,
     payload: tasks,
   };
 };
