@@ -14,6 +14,7 @@ import { useStyles } from './styles';
 import { muiTabProps } from '../../utils';
 // actions
 import { setActiveTab } from '../../store/actions';
+import TasksChart from '../TasksChart/TasksChart';
 
 const TimerTabs: React.FC = (props: any) => {
   const classes = useStyles();
@@ -56,7 +57,7 @@ const TimerTabs: React.FC = (props: any) => {
         <TimerTable />
       </TabPanel>
       <TabPanel value={activeTab} index="TASKS_CHART">
-        TASKS CHART
+        <TasksChart />
       </TabPanel>
     </div>
   );
