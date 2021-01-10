@@ -11,7 +11,7 @@ import TabPanel from './TabPanel/TabPanel';
 // styles
 import { useStyles } from './styles';
 // utils
-import { muiTabProps } from '../../utils';
+import { muiTabProps } from '../../utils/muiUtils';
 // actions
 import { setActiveTab } from '../../store/actions';
 import TasksChart from '../TasksChart/TasksChart';
