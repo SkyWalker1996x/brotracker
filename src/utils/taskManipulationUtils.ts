@@ -1,7 +1,8 @@
 import { extractSpendTime, extractTime } from './timesManipulationUtils';
+import {Task, Tasks} from "../interfaces/Store";
 
-export const transformTasks = (tasks: any) => {
-  return tasks.map((task: any, index: number) => {
+export const transformTasksForTable = (tasks: Tasks) => {
+  return tasks.map((task, index: number) => {
     return {
       number: index + 1,
       ...task,
@@ -19,7 +20,7 @@ export const toSentenceText = (camelCase: string) => {
   return capitalLetters;
 };
 
-export const toPageInfo = (task: any) => {
+export const toPageInfo = (task: Task) => {
   const { taskName, timeStart, timeEnd, timeSpend } = task;
 
   return {
@@ -30,7 +31,7 @@ export const toPageInfo = (task: any) => {
   };
 };
 
-export const extractTimeChart = (tasks: any) => {
+export const extractTimeChart = (tasks: Tasks) => {
   const timesChartData = [
     { name: '0', spendMinutes: 0 },
     { name: '1', spendMinutes: 0 },
@@ -58,7 +59,7 @@ export const extractTimeChart = (tasks: any) => {
     { name: '23', spendMinutes: 0 },
   ];
 
-  tasks.forEach((task: any) => {
+  tasks.forEach((task) => {
     const { timeStart, timeEnd, timeSpend } = task;
     const taskHourStart = new Date(timeStart).getHours();
     const taskMinutesStart = new Date(timeStart).getMinutes();

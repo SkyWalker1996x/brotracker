@@ -13,7 +13,7 @@ import { useStyles } from '../styles';
 // actions
 import { deleteTask } from '../../../store/actions/tasksActions';
 // utils
-import { transformTasks } from '../../../utils/taskManipulationUtils';
+import { transformTasksForTable } from '../../../utils/taskManipulationUtils';
 
 const tableHead = [
   { id: 1, label: '#' },
@@ -29,7 +29,7 @@ const FilledTable = (props: any) => {
   const classes = useStyles();
   const { tasks, deleteTask, history } = props;
 
-  const filledTable = transformTasks(tasks).map((task: any) => {
+  const filledTable = transformTasksForTable(tasks).map((task: any) => {
     const { id, number } = task;
 
     return (

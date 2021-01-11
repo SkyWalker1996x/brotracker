@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
 import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 // MUI-components
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,16 +15,19 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 // utils
-import { toPageInfo, toSentenceText, transformTasks } from '../../utils/taskManipulationUtils';
+import {
+  toPageInfo,
+  toSentenceText,
+  transformTasksForTable,
+} from '../../utils/taskManipulationUtils';
 // styles
 import { useStyles } from './mui-styles';
-import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const TaskPage = (props: any) => {
   const classes = useStyles();
   const { number, tasks } = props;
 
-  const pageTask = transformTasks(tasks).find(
+  const pageTask = transformTasksForTable(tasks).find(
     (item: any) => item.number === +number
   );
 
