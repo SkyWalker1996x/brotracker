@@ -100,7 +100,7 @@ export const extractTimeChart = (tasks: Tasks) => {
       });
     }
 
-    if (taskHourEnd - taskHourStart > 1) {
+    if (taskHourEnd - taskHourStart === 2) {
       timesChartData.forEach((item) => {
         const { name, spendMinutes } = item;
 
