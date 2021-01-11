@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
 import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
@@ -22,13 +22,16 @@ import {
 } from '../../utils/taskManipulationUtils';
 // styles
 import { useStyles } from './mui-styles';
+// interfaces
+import { State } from '../../interfaces/Store';
 
 const TaskPage = (props: any) => {
   const classes = useStyles();
-  const { number, tasks } = props;
+  const { number } = props;
+  const tasks = useSelector((state: State) => state.tasks);
 
   const pageTask = transformTasksForTable(tasks).find(
-    (item: any) => item.number === +number
+    (item) => item.number === +number
   );
 
   if (!pageTask) {
@@ -48,7 +51,8 @@ const TaskPage = (props: any) => {
                   <ListItem>
                     <ListItemText
                       primary={toSentenceText(field)}
-                      secondary={!pageTask[field] ? 'No Info' : pageTask[field]}
+                      // @ts-ignore
+                      secondary={pageTask[field]}
                     />
                   </ListItem>
                   <Divider />
@@ -74,8 +78,4 @@ const TaskPage = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { tasks: state.tasks };
-};
-
-export default connect(mapStateToProps)(TaskPage);
+export default TaskPage;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 // M-UI components
 import Table from '@material-ui/core/Table';
@@ -14,6 +14,8 @@ import { useStyles } from '../styles';
 import { deleteTask } from '../../../store/actions/tasksActions';
 // utils
 import { transformTasksForTable } from '../../../utils/taskManipulationUtils';
+// interfaces
+import { State } from '../../../interfaces/Store';
 
 const tableHead = [
   { id: 1, label: '#' },
@@ -25,18 +27,21 @@ const tableHead = [
   { id: 7, label: 'Delete' },
 ];
 
-const FilledTable = (props: any) => {
+const FilledTable: React.FC = (props: any) => {
   const classes = useStyles();
-  const { tasks, deleteTask, history } = props;
+  const { history } = props;
 
-  const filledTable = transformTasksForTable(tasks).map((task: any) => {
+  const tasks = useSelector((state: State) => state.tasks);
+  const dispatch = useDispatch();
+
+  const filledTable = transformTasksForTable(tasks).map((task) => {
     const { id, number } = task;
 
     return (
       <TableRow className={classes.tableRow} key={id}>
         {Object.keys(task)
           .filter((item) => item !== 'id')
-          .map((item: string, index) => {
+          .map((item, index) => {
             return (
               <TableCell
                 key={id + index}
@@ -66,7 +71,7 @@ const FilledTable = (props: any) => {
           <Button
             variant="contained"
             className={classes.tableButton}
-            onClick={() => deleteTask(id)}
+            onClick={() => dispatch(deleteTask(id))}
           >
             Delete
           </Button>
@@ -101,14 +106,4 @@ const FilledTable = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return state;
-};
-
-const mapDispatchToProps = {
-  deleteTask,
-};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(FilledTable)
-);
+export default withRouter(FilledTable);

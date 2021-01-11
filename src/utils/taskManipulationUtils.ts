@@ -1,5 +1,6 @@
 import { extractSpendTime, extractTime } from './timesManipulationUtils';
-import {Task, Tasks} from "../interfaces/Store";
+import { Tasks} from "../interfaces/Store";
+import {TaskForTable} from "../interfaces/Utils";
 
 export const transformTasksForTable = (tasks: Tasks) => {
   return tasks.map((task, index: number) => {
@@ -20,7 +21,7 @@ export const toSentenceText = (camelCase: string) => {
   return capitalLetters;
 };
 
-export const toPageInfo = (task: Task) => {
+export const toPageInfo = (task: TaskForTable) => {
   const { taskName, timeStart, timeEnd, timeSpend } = task;
 
   return {
