@@ -10,7 +10,7 @@ import {
 import { showWarning } from '../../../store/actions/emptyWarningActions';
 // styles
 import { useStyles } from './mui-styles';
-import { State } from '../../../interfaces';
+import { State } from '../../../interfaces/Store';
 
 const TimerButton: React.FC = (props: any) => {
   const classes = useStyles();

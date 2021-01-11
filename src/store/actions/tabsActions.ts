@@ -1,4 +1,4 @@
-import {SetActiveTab} from "../../interfaces";
+import {SetActiveTab} from "../../interfaces/Store";
 import {SET_ACTIVE_TAB} from "../types";
 
 export const setActiveTab: SetActiveTab = (tab) => {

@@ -1,5 +1,5 @@
 import { ADD_TASK, DELETE_TASK, GENERATE_TASKS } from '../types';
-import { Action, Tasks } from '../../interfaces';
+import { Action, Tasks } from '../../interfaces/Store';
 
 const initialState: Tasks = [];
 

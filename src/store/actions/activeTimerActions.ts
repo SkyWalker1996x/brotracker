@@ -1,4 +1,4 @@
-import {ActivateTimer, InactivateTimer} from "../../interfaces";
+import {ActivateTimer, InactivateTimer} from "../../interfaces/Store";
 import {ACTIVATE_TIMER, INACTIVATE_TIMER} from "../types";
 
 export const activateTimer: ActivateTimer = () => {

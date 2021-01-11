@@ -1,4 +1,4 @@
-import { Action, ActiveTab } from '../../interfaces';
+import { Action, ActiveTab } from '../../interfaces/Store';
 
 const initialState = 'TABLE_LOG';
 

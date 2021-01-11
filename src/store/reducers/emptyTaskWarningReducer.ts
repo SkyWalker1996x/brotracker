@@ -1,4 +1,4 @@
-import { Action, EmptyTask } from '../../interfaces';
+import { Action, EmptyTask } from '../../interfaces/Store';
 import { CLOSE_WARNING, SHOW_WARNING } from '../types';
 
 const initialState = false;

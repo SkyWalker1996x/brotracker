@@ -1,5 +1,5 @@
 import { INACTIVATE_TIMER, ACTIVATE_TIMER } from '../types';
-import { ActiveTimer, Action } from '../../interfaces';
+import { ActiveTimer, Action } from '../../interfaces/Store';
 
 const initialState = false;
 

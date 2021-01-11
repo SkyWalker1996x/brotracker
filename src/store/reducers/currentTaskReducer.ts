@@ -5,7 +5,7 @@ import {
   START_TASK,
   UPDATE_TIME_SPEND,
 } from '../types';
-import { Task, Action } from '../../interfaces';
+import { Task, Action } from '../../interfaces/Store';
 
 const initialState = {
   id: '',

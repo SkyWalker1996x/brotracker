@@ -1,4 +1,4 @@
-import { AddTask, DeleteTask, GenerateTasks } from '../../interfaces';
+import { AddTask, DeleteTask, GenerateTasks } from '../../interfaces/Store';
 import { ADD_TASK, DELETE_TASK, GENERATE_TASKS } from '../types';
 
 export const addTask: AddTask = (task) => {

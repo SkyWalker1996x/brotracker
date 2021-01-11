@@ -1,4 +1,4 @@
-import {ClearCurrentTask, FinishTask, SetTaskName, StartTask, UpdateTimeSpend} from "../../interfaces";
+import {ClearCurrentTask, FinishTask, SetTaskName, StartTask, UpdateTimeSpend} from "../../interfaces/Store";
 import {CLEAR_CURRENT_TASK, FINISH_TASK, SET_TASK_NAME, START_TASK, UPDATE_TIME_SPEND} from "../types";
 import {v4 as uuidv4} from "uuid";
 

@@ -1,4 +1,4 @@
-import {CloseWarning, ShowWarning} from "../../interfaces";
+import {CloseWarning, ShowWarning} from "../../interfaces/Store";
 import {CLOSE_WARNING, SHOW_WARNING} from "../types";
 
 export const showWarning:ShowWarning = () => {

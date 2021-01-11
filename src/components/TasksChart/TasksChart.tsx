@@ -9,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import { State } from '../../interfaces';
+import { State } from '../../interfaces/Store';
 // components
 import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
 import GenerateTaskButtonWrapper from '../../UI/wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
