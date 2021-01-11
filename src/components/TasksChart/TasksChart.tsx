@@ -21,8 +21,6 @@ const TasksChart = (props: any) => {
 
   const tasksToChart = extractTimeChart(tasks);
 
-  console.log(tasksToChart);
-
   return (
     <>
       <BarChart
@@ -39,9 +37,15 @@ const TasksChart = (props: any) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis domain={[0, 60]} />
-        <Tooltip />
+        <Tooltip
+            labelFormatter={(name) => 'The Current Hour: ' + name}
+        />
         <Legend />
-        <Bar dataKey="spendMinutes" name="Minutes in this hour" fill="#3d5afe" />
+        <Bar
+          dataKey="spendMinutes"
+          name="Minutes in this hour"
+          fill="#3d5afe"
+        />
       </BarChart>
       <GenerateTaskButtonWrapper>
         <GenerateTaskButton />
