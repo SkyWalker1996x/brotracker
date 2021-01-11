@@ -10,39 +10,38 @@ import {
   Legend,
 } from 'recharts';
 import { State } from '../../interfaces';
+// components
 import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
 import GenerateTaskButtonWrapper from '../../UI/wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
+// utils
+import { extractTimeChart } from '../../utils/taskManipulationUtils';
 
 const TasksChart = (props: any) => {
   const { tasks } = props;
 
-  const tasksToChart = tasks.map((item: any) => {
-    const { taskName, timeSpend } = item;
-    return {
-      taskName,
-      timeSpend: Math.floor(timeSpend / 1000 / 60),
-    };
-  });
+  const tasksToChart = extractTimeChart(tasks);
+
+  console.log(tasksToChart);
 
   return (
     <>
       <BarChart
         width={900}
-        height={500}
+        height={230}
         data={tasksToChart}
         margin={{
           top: 25,
           right: 10,
-          left: 20,
+          left: 10,
           bottom: 5,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3"/>
-        <XAxis dataKey="taskName" />
-        <YAxis domain={[0, 90]} />
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis domain={[0, 60]} />
         <Tooltip />
         <Legend />
-        <Bar dataKey="timeSpend" fill="#3d5afe" />
+        <Bar dataKey="spendMinutes" name="Minutes in this hour" fill="#3d5afe" />
       </BarChart>
       <GenerateTaskButtonWrapper>
         <GenerateTaskButton />
