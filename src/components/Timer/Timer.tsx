@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // components
-import ColumnWrapper from "../Wrappers/ColumnWrapper/ColumnWrapper";
-import CircleWrapper from "../Wrappers/CircleWrapper/CircleWrapper";
+import ColumnWrapper from '../Wrappers/ColumnWrapper/ColumnWrapper';
+import CircleWrapper from '../Wrappers/CircleWrapper/CircleWrapper';
 // MUI-components
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -20,7 +20,7 @@ import { State } from '../../interfaces/Store';
 // styles
 import './styles.css';
 import { useStyles } from './mui-styles';
-
+import EmptyTaskWarning from '../EmptyTaskWarning/EmptyTaskWarning';
 
 const Timer = () => {
   const classes = useStyles();
@@ -51,6 +51,7 @@ const Timer = () => {
       >
         {activeTimer ? 'Stop' : 'Start'}
       </Button>
+      <EmptyTaskWarning />
     </ColumnWrapper>
   );
 };
