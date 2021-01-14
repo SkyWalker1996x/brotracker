@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // actions
 import { closeWarning } from '../../store/actions/emptyWarningActions';
 // types
@@ -14,12 +14,17 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 // styles
 import { useStyles } from './mui-styles';
 
-const EmptyTaskWarning = (props: any) => {
+const EmptyTaskWarning = () => {
   const classes = useStyles();
-  const { emptyTask, closeWarning } = props;
+  const emptyTask = useSelector((state: State) => state.emptyTask);
+  const dispatch = useDispatch();
 
   return (
-    <Dialog open={emptyTask} onClose={closeWarning} aria-labelledby="dialog-title">
+    <Dialog
+      open={emptyTask}
+      onClose={() => dispatch(closeWarning())}
+      aria-labelledby="dialog-title"
+    >
       <DialogTitle id="dialog-title" className={classes.dialogTitle}>
         Empty task name
       </DialogTitle>
@@ -30,7 +35,10 @@ const EmptyTaskWarning = (props: any) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeWarning} className={classes.button}>
+        <Button
+          onClick={() => dispatch(closeWarning())}
+          className={classes.button}
+        >
           Close
         </Button>
       </DialogActions>
@@ -38,12 +46,4 @@ const EmptyTaskWarning = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: State) => {
-  return { emptyTask: state.emptyTask };
-};
-
-const mapDispatchToProps = {
-  closeWarning,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(EmptyTaskWarning);
+export default EmptyTaskWarning;
