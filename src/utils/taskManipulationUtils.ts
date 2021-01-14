@@ -1,12 +1,17 @@
 import { extractSpendTime, extractTime } from './timesManipulationUtils';
-import { Tasks} from "../interfaces/Store";
-import {TaskForTable} from "../interfaces/Utils";
+import { Tasks } from '../interfaces/Store';
+import { TaskForTable } from '../interfaces/Utils';
+
+export const transformLongTask = (task: string) => {
+  return task.length > 13 ? `${task.substr(0, 12)}...` : task;
+};
 
 export const transformTasksForTable = (tasks: Tasks) => {
   return tasks.map((task, index: number) => {
     return {
       number: index + 1,
       ...task,
+      taskName: transformLongTask(task.taskName),
       timeStart: extractTime(task.timeStart),
       timeEnd: extractTime(task.timeEnd),
       timeSpend: extractSpendTime(task.timeSpend),
