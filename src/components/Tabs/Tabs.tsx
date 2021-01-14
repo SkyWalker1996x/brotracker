@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 // MUI-components
 import AppBar from '@material-ui/core/AppBar';
@@ -16,19 +16,21 @@ import { extractActiveTab } from '../../utils/routingUtils';
 // actions
 import { setActiveTab } from '../../store/actions/tabsActions';
 import TasksChart from '../TasksChart/TasksChart';
+import { State } from '../../interfaces/Store';
 
-const TimerTabs: React.FC = (props: any) => {
+const TimerTabs: React.FC = () => {
   const classes = useStyles();
-  const { activeTab, setActiveTab } = props;
+  const activeTab = useSelector((state: State) => state.activeTab);
+  const dispatch = useDispatch();
   const history = useHistory();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    setActiveTab(extractActiveTab(pathname));
+    dispatch(setActiveTab(extractActiveTab(pathname)));
   }, [pathname]);
 
   const handleSetTab = (event: any, value: any) => {
-    setActiveTab(value);
+    dispatch(setActiveTab(value));
   };
 
   return (
@@ -36,7 +38,6 @@ const TimerTabs: React.FC = (props: any) => {
       <AppBar position="static">
         <Tabs
           className={classes.tabs}
-          /*value={extractActiveTab(pathname)}*/
           value={activeTab}
           onChange={handleSetTab}
           variant="fullWidth"
@@ -71,12 +72,4 @@ const TimerTabs: React.FC = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { activeTab: state.activeTab };
-};
-
-const mapDispatchToProps = {
-  setActiveTab,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TimerTabs);
+export default TimerTabs;
