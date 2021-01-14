@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // components
 import ColumnWrapper from '../Wrappers/ColumnWrapper/ColumnWrapper';
@@ -7,7 +7,10 @@ import CircleWrapper from '../Wrappers/CircleWrapper/CircleWrapper';
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
 // actions
-import { setTaskName } from '../../store/actions/currentTaskActions';
+import {
+  setTaskName,
+  updateTimeSpend,
+} from '../../store/actions/currentTaskActions';
 import { showWarning } from '../../store/actions/emptyWarningActions';
 import {
   activateTimer,
@@ -27,8 +30,21 @@ const Timer = () => {
   const dispatch = useDispatch();
   const currentTask = useSelector((state: State) => state.currentTask);
   const activeTimer = useSelector((state: State) => state.activeTimer);
+  let taskTimer: any = useRef();
 
   const { taskName, timeSpend } = currentTask;
+
+  useEffect(() => {
+    if (activeTimer) {
+      taskTimer.current = setInterval(() => {
+        dispatch(updateTimeSpend());
+      }, 1000);
+    }
+
+    if (!activeTimer) {
+      clearInterval(taskTimer.current);
+    }
+  }, [activeTimer]);
 
   const inactivateListener =
     taskName.trim() === '' ? showWarning : inactivateTimer;
