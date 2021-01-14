@@ -1,5 +1,5 @@
 import React from 'react';
-import './circle-wrapper.css';
+import './styles.css';
 
 const CircleWrapper: React.FC = ({ children }) => {
   return <div className="circle-wrapper">{children}</div>;

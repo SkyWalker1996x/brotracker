@@ -1,5 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+// components
+import ColumnWrapper from "../Wrappers/ColumnWrapper/ColumnWrapper";
+import CircleWrapper from "../Wrappers/CircleWrapper/CircleWrapper";
 // MUI-components
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -15,9 +18,9 @@ import { extractSpendTime } from '../../utils/timesManipulationUtils';
 // interfaces
 import { State } from '../../interfaces/Store';
 // styles
-import './mui-styles.css';
 import './styles.css';
 import { useStyles } from './mui-styles';
+
 
 const Timer = () => {
   const classes = useStyles();
@@ -33,14 +36,14 @@ const Timer = () => {
   const listener = activeTimer ? inactivateListener : activateTimer;
 
   return (
-    <div className="column-wrapper">
+    <ColumnWrapper>
       <TextField
         id="standard-basic"
         label="Name of your task"
         onChange={(e) => dispatch(setTaskName(e.target.value))}
         value={taskName}
       />
-      <div className="circle-wrapper">{extractSpendTime(timeSpend)}</div>
+      <CircleWrapper>{extractSpendTime(timeSpend)}</CircleWrapper>
       <Button
         variant="contained"
         className={classes.timerButton}
@@ -48,7 +51,7 @@ const Timer = () => {
       >
         {activeTimer ? 'Stop' : 'Start'}
       </Button>
-    </div>
+    </ColumnWrapper>
   );
 };
 

@@ -12,7 +12,7 @@ import {
 import { State } from '../../interfaces/Store';
 // components
 import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
-import GenerateTaskButtonWrapper from '../../UI/wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
+import GenerateTaskButtonWrapper from '../../components/Wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
 // utils
 import { extractTimeChart } from '../../utils/taskManipulationUtils';
 

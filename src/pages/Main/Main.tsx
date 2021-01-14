@@ -1,6 +1,6 @@
 import React from 'react';
 // components
-import ColumnWrapper from '../../UI/wrappers/ColumnWrapper/ColumnWrapper';
+import ColumnWrapper from "../../components/Wrappers/ColumnWrapper/ColumnWrapper";
 import Timer from '../../components/Timer/Timer';
 import TimerTabs from '../../components/Tabs/Tabs';
 import EmptyTaskWarning from '../../components/EmptyTaskWarning/EmptyTaskWarning';
