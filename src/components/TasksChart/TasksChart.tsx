@@ -12,7 +12,6 @@ import {
 import { State } from '../../interfaces/Store';
 // components
 import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
-import GenerateTaskButtonWrapper from '../../components/Wrappers/GenerateTaskButtonWrapper/GenerateTaskButtonWrapper';
 // utils
 import { extractTimeChart } from '../../utils/taskManipulationUtils';
 
@@ -37,9 +36,7 @@ const TasksChart = (props: any) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis domain={[0, 60]} />
-        <Tooltip
-            labelFormatter={(name) => 'The Current Hour: ' + name}
-        />
+        <Tooltip labelFormatter={(name) => 'The Current Hour: ' + name} />
         <Legend />
         <Bar
           dataKey="spendMinutes"
@@ -47,9 +44,8 @@ const TasksChart = (props: any) => {
           fill="#3d5afe"
         />
       </BarChart>
-      <GenerateTaskButtonWrapper>
-        <GenerateTaskButton />
-      </GenerateTaskButtonWrapper>
+
+      <GenerateTaskButton />
     </>
   );
 };
