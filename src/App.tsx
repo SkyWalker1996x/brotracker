@@ -8,12 +8,12 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 const App: React.FC = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Main} />
-      <Route
+      <Route exact path={["/", "/tasks_chart"]} component={Main} />
+      {/*<Route
         exact
         path="/tasks_chart"
         component={Main}
-      />
+      />*/}
       <Route
         path="/task/:number"
         render={({ match }) => {

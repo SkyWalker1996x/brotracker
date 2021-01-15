@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../../store';
 // components
 import ColumnWrapper from '../Wrappers/ColumnWrapper/ColumnWrapper';
 import CircleWrapper from '../Wrappers/CircleWrapper/CircleWrapper';
@@ -18,6 +19,7 @@ import {
 } from '../../store/actions/activeTimerActions';
 // utils
 import { extractSpendTime } from '../../utils/timesManipulationUtils';
+import { saveToLocalStorage } from '../../utils/localStorageUtils';
 // interfaces
 import { State } from '../../interfaces/Store';
 // styles
@@ -37,6 +39,7 @@ const Timer = () => {
   useEffect(() => {
     if (activeTimer) {
       taskTimer.current = setInterval(() => {
+        saveToLocalStorage(store.getState());
         dispatch(updateTimeSpend());
       }, 1000);
     }

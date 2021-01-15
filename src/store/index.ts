@@ -6,7 +6,6 @@ import { rootReducer } from './reducers';
 import { rootSaga } from './sagas';
 import {
   loadFromLocalStorage,
-  saveToLocalStorage,
 } from '../utils/localStorageUtils';
 import { ACTIVATE_TIMER } from './types';
 
@@ -18,10 +17,6 @@ export const store = createStore(
   persistedState,
   composeWithDevTools(applyMiddleware(logger, sagaMiddleware))
 );
-
-store.subscribe(() => {
-  saveToLocalStorage(store.getState());
-});
 
 sagaMiddleware.run(rootSaga);
 
