@@ -15,8 +15,6 @@ export interface Task {
 
 export type ActiveTimer = boolean;
 
-export type ActiveTab = string;
-
 export type EmptyTask = boolean;
 
 export type Tasks = Array<Task>;
@@ -37,7 +35,6 @@ export interface State {
   tasks: Tasks,
   currentTask: Task,
   activeTimer: ActiveTimer,
-  activeTab: ActiveTab,
   emptyTask: EmptyTask,
 }
 
