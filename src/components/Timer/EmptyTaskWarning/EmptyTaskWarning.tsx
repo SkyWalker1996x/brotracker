@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // actions
-import { closeWarning } from '../../store/actions/emptyWarningActions';
+import { closeWarning } from '../../../store/actions/emptyWarningActions';
 // types
-import { State } from '../../interfaces/Store';
+import { State } from '../../../interfaces/Store';
 // MUI-components
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';

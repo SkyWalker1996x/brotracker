@@ -25,7 +25,7 @@ import { State } from '../../interfaces/Store';
 // styles
 import './styles.css';
 import { useStyles } from './mui-styles';
-import EmptyTaskWarning from '../EmptyTaskWarning/EmptyTaskWarning';
+import EmptyTaskWarning from "./EmptyTaskWarning/EmptyTaskWarning";
 
 const Timer = () => {
   const classes = useStyles();
