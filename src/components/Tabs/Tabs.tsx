@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 // MUI-components
 import AppBar from '@material-ui/core/AppBar';
@@ -8,38 +7,28 @@ import Tab from '@material-ui/core/Tab';
 // components
 import TimerTable from '../Table/Table';
 import TabPanel from './TabPanel/TabPanel';
+import TasksChart from '../TasksChart/TasksChart';
 // styles
 import { useStyles } from './styles';
 // utils
 import { muiTabProps } from '../../utils/muiUtils';
 import { extractActiveTab } from '../../utils/routingUtils';
-// actions
-import { setActiveTab } from '../../store/actions/tabsActions';
-import TasksChart from '../TasksChart/TasksChart';
-import { State } from '../../interfaces/Store';
 
 const TimerTabs: React.FC = () => {
   const classes = useStyles();
-  const activeTab = useSelector((state: State) => state.activeTab);
-  const dispatch = useDispatch();
   const history = useHistory();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    dispatch(setActiveTab(extractActiveTab(pathname)));
-  }, [pathname]);
 
-  const handleSetTab = (event: any, value: any) => {
-    dispatch(setActiveTab(value));
-  };
+  }, [pathname]);
 
   return (
     <div>
       <AppBar position="static">
         <Tabs
           className={classes.tabs}
-          value={activeTab}
-          onChange={handleSetTab}
+          value={extractActiveTab(pathname)}
           variant="fullWidth"
         >
           <Tab
@@ -62,10 +51,10 @@ const TimerTabs: React.FC = () => {
           />
         </Tabs>
       </AppBar>
-      <TabPanel value={activeTab} index="TABLE_LOG">
+      <TabPanel value={extractActiveTab(pathname)} index="TABLE_LOG">
         <TimerTable />
       </TabPanel>
-      <TabPanel value={activeTab} index="TASKS_CHART">
+      <TabPanel value={extractActiveTab(pathname)} index="TASKS_CHART">
         <TasksChart />
       </TabPanel>
     </div>
