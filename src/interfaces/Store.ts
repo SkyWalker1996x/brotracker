@@ -30,7 +30,7 @@ export type CloseWarning = () => { type: ActionType };
 export interface State {
   tasks: Tasks;
   currentTask: Task;
-  activeTimer: ActiveTimer;
+
 }
 
 export type StartTask = () => {

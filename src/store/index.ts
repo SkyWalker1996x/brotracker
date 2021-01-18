@@ -4,9 +4,7 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './reducers';
 import { rootSaga } from './sagas';
-import {
-  loadFromLocalStorage,
-} from '../utils/localStorageUtils';
+import { loadFromLocalStorage } from '../utils/localStorageUtils';
 import { ACTIVATE_TIMER } from './types';
 
 const persistedState = loadFromLocalStorage();
@@ -20,6 +18,6 @@ export const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-if (store.getState().activeTimer) {
+if (store.getState().currentTask.timeStart !== 0) {
   store.dispatch({ type: ACTIVATE_TIMER, payload: '' });
 }

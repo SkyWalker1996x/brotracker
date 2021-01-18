@@ -32,7 +32,6 @@ const Timer = ({
   updateTimeSpend,
   activateTimer,
   inactivateTimer,
-  activeTimer,
   currentTask,
 }: TimerProps) => {
   const classes = useStyles();
@@ -46,17 +45,17 @@ const Timer = ({
     setEmptyTask(false);
   };
 
-  const { taskName, timeSpend } = currentTask;
+  const { taskName, timeSpend, timeStart: activeTimer } = currentTask;
 
   useEffect(() => {
-    if (activeTimer) {
+    if (activeTimer !== 0) {
       taskTimer.current = setInterval(() => {
         saveToLocalStorage(store.getState());
         updateTimeSpend();
       }, 1000);
     }
 
-    if (!activeTimer) {
+    if (activeTimer === 0) {
       clearInterval(taskTimer.current);
     }
   }, [activeTimer]);
@@ -64,7 +63,7 @@ const Timer = ({
   const inactivateListener =
     taskName.trim() === '' ? openEmptyWarning : inactivateTimer;
 
-  const listener = activeTimer ? inactivateListener : activateTimer;
+  const listener = activeTimer !== 0 ? inactivateListener : activateTimer;
 
   return (
     <ColumnWrapper>
@@ -93,7 +92,6 @@ const Timer = ({
 const mapStateToProps = (state: State) => {
   return {
     currentTask: state.currentTask,
-    activeTimer: state.activeTimer,
   };
 };
 const mapDispatchToProps = {

@@ -11,7 +11,6 @@ export interface TimerProps {
   updateTimeSpend: UpdateTimeSpend;
   activateTimer: ActivateTimer;
   inactivateTimer: InactivateTimer;
-  activeTimer: boolean;
   currentTask: Task;
 }
 
