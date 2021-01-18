@@ -1,7 +1,10 @@
 import React from 'react';
+// MUI-components
 import Box from '@material-ui/core/Box';
+// interfaces
+import { TabPanelProps } from '../../../interfaces/Props';
 
-const TabPanel = (props: any) => {
+const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   return (

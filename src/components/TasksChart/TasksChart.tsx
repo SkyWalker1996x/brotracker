@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   BarChart,
   Bar,
@@ -15,9 +15,8 @@ import GenerateTaskButton from './GenerateTaskButton/GenerateTaskButton';
 // utils
 import { extractTimeChart } from '../../utils/taskManipulationUtils';
 
-const TasksChart = (props: any) => {
-  const { tasks } = props;
-
+const TasksChart = () => {
+  const tasks = useSelector((state: State) => state.tasks);
   const tasksToChart = extractTimeChart(tasks);
 
   return (
@@ -50,8 +49,4 @@ const TasksChart = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: State) => {
-  return { tasks: state.tasks };
-};
-
-export default connect(mapStateToProps)(TasksChart);
+export default TasksChart;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // components
-import EmptyTable from './EmptyTable/EmptyTable'
+import EmptyTable from './EmptyTable/EmptyTable';
 // MUI-components
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -20,7 +20,6 @@ import { State } from '../../interfaces/Store';
 // styles
 import { useStyles } from './styles';
 
-
 const tableHead = [
   { id: 1, label: '#' },
   { id: 2, label: 'Task' },
@@ -36,6 +35,8 @@ const TimerTable: React.FC = () => {
   const history = useHistory();
   const tasks = useSelector((state: State) => state.tasks);
   const dispatch = useDispatch();
+
+  if (tasks.length === 0) return <EmptyTable />;
 
   const filledTable = transformTasksForTable(tasks).map((task) => {
     const { id, number } = task;
@@ -84,34 +85,28 @@ const TimerTable: React.FC = () => {
   });
 
   return (
-    <>
-      {tasks.length === 0 ? (
-        <EmptyTable />
-      ) : (
-        <TableContainer className={classes.table}>
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                {tableHead.map((item) => {
-                  const { id, label } = item;
+    <TableContainer className={classes.table}>
+      <Table aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {tableHead.map((item) => {
+              const { id, label } = item;
 
-                  return (
-                    <TableCell
-                      align="center"
-                      key={id}
-                      className={classes.tableHeadCell}
-                    >
-                      {label}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            </TableHead>
-            <TableBody>{filledTable}</TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </>
+              return (
+                <TableCell
+                  align="center"
+                  key={id}
+                  className={classes.tableHeadCell}
+                >
+                  {label}
+                </TableCell>
+              );
+            })}
+          </TableRow>
+        </TableHead>
+        <TableBody>{filledTable}</TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
-import ColumnWrapper from "../../components/Wrappers/ColumnWrapper/ColumnWrapper";
+import ColumnWrapper from '../../components/Wrappers/ColumnWrapper/ColumnWrapper';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 // MUI-components
 import List from '@material-ui/core/List';
@@ -25,7 +25,11 @@ import { useStyles } from './mui-styles';
 // interfaces
 import { State } from '../../interfaces/Store';
 
-const TaskPage = (props: any) => {
+interface TaskPageProps {
+  number: string
+}
+
+const TaskPage = (props: TaskPageProps) => {
   const classes = useStyles();
   const { number } = props;
   const tasks = useSelector((state: State) => state.tasks);
