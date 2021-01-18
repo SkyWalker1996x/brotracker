@@ -15,8 +15,6 @@ export interface Task {
 
 export type ActiveTimer = boolean;
 
-export type EmptyTask = boolean;
-
 export type Tasks = Array<Task>;
 
 export type UpdateTimeSpend = () => { type: ActionType, payload: number };
@@ -27,15 +25,12 @@ export type ActivateTimer = () => { type: ActionType };
 
 export type InactivateTimer = () => { type: ActionType };
 
-export type ShowWarning = () => { type: ActionType };
-
 export type CloseWarning = () => { type: ActionType };
 
 export interface State {
-  tasks: Tasks,
-  currentTask: Task,
-  activeTimer: ActiveTimer,
-  emptyTask: EmptyTask,
+  tasks: Tasks;
+  currentTask: Task;
+  activeTimer: ActiveTimer;
 }
 
 export type StartTask = () => {
@@ -48,27 +43,37 @@ export type FinishTask = () => {
   payload: number,
 };
 
-export type SetActiveTab = (tab: string) => {
+export type SetActiveTab = (
+  tab: string
+) => {
   type: ActionType,
   payload: string,
 };
 
-export type SetTaskName = (name: string) => {
+export type SetTaskName = (
+  name: string
+) => {
   type: ActionType,
   payload: string,
 };
 
-export type AddTask = (task: Task) => {
+export type AddTask = (
+  task: Task
+) => {
   type: ActionType,
   payload: Task,
 };
 
-export type DeleteTask = (id: string) => {
+export type DeleteTask = (
+  id: string
+) => {
   type: ActionType,
   payload: string,
 };
 
-export type GenerateTasks = (tasks: Tasks) => {
+export type GenerateTasks = (
+  tasks: Tasks
+) => {
   type: ActionType,
-  payload: Tasks
-}
+  payload: Tasks,
+};

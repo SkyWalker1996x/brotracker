@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
 import { store } from '../../store';
 // components
 import ColumnWrapper from '../Wrappers/ColumnWrapper/ColumnWrapper';
 import CircleWrapper from '../Wrappers/CircleWrapper/CircleWrapper';
+import EmptyTaskWarning from './EmptyTaskWarning/EmptyTaskWarning';
 // MUI-components
 import TextField from '@material-ui/core/TextField';
 import { Button } from '@material-ui/core';
@@ -12,7 +13,6 @@ import {
   setTaskName,
   updateTimeSpend,
 } from '../../store/actions/currentTaskActions';
-import { showWarning } from '../../store/actions/emptyWarningActions';
 import {
   activateTimer,
   inactivateTimer,
@@ -22,17 +22,29 @@ import { extractSpendTime } from '../../utils/timesManipulationUtils';
 import { saveToLocalStorage } from '../../utils/localStorageUtils';
 // interfaces
 import { State } from '../../interfaces/Store';
+import { TimerProps } from '../../interfaces/Props';
 // styles
 import './styles.css';
 import { useStyles } from './mui-styles';
-import EmptyTaskWarning from "./EmptyTaskWarning/EmptyTaskWarning";
 
-const Timer = () => {
+const Timer = ({
+  setTaskName,
+  updateTimeSpend,
+  activateTimer,
+  inactivateTimer,
+  activeTimer,
+  currentTask,
+}: TimerProps) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const currentTask = useSelector((state: State) => state.currentTask);
-  const activeTimer = useSelector((state: State) => state.activeTimer);
   let taskTimer: any = useRef();
+  const [isEmptyTask, setEmptyTask] = useState(false);
+
+  const openEmptyWarning = () => {
+    setEmptyTask(true);
+  };
+  const closeEmptyWarning = () => {
+    setEmptyTask(false);
+  };
 
   const { taskName, timeSpend } = currentTask;
 
@@ -40,7 +52,7 @@ const Timer = () => {
     if (activeTimer) {
       taskTimer.current = setInterval(() => {
         saveToLocalStorage(store.getState());
-        dispatch(updateTimeSpend());
+        updateTimeSpend();
       }, 1000);
     }
 
@@ -50,7 +62,7 @@ const Timer = () => {
   }, [activeTimer]);
 
   const inactivateListener =
-    taskName.trim() === '' ? showWarning : inactivateTimer;
+    taskName.trim() === '' ? openEmptyWarning : inactivateTimer;
 
   const listener = activeTimer ? inactivateListener : activateTimer;
 
@@ -59,20 +71,36 @@ const Timer = () => {
       <TextField
         id="standard-basic"
         label="Name of your task"
-        onChange={(e) => dispatch(setTaskName(e.target.value))}
+        onChange={(e) => setTaskName(e.target.value)}
         value={taskName}
       />
       <CircleWrapper>{extractSpendTime(timeSpend)}</CircleWrapper>
       <Button
         variant="contained"
         className={classes.timerButton}
-        onClick={() => dispatch(listener())}
+        onClick={() => listener()}
       >
         {activeTimer ? 'Stop' : 'Start'}
       </Button>
-      <EmptyTaskWarning />
+      <EmptyTaskWarning
+        isEmptyTask={isEmptyTask}
+        closeEmptyWarning={closeEmptyWarning}
+      />
     </ColumnWrapper>
   );
 };
 
-export default Timer;
+const mapStateToProps = (state: State) => {
+  return {
+    currentTask: state.currentTask,
+    activeTimer: state.activeTimer,
+  };
+};
+const mapDispatchToProps = {
+  setTaskName,
+  updateTimeSpend,
+  activateTimer,
+  inactivateTimer,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
