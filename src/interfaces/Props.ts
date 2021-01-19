@@ -16,8 +16,8 @@ export interface TimerProps {
 }
 
 export interface EmptyTaskWarningProps {
-  isEmptyTask: boolean;
-  closeEmptyWarning: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export interface TabPanelProps {

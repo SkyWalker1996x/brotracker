@@ -36,13 +36,13 @@ const Timer = ({
 }: TimerProps) => {
   const classes = useStyles();
   let taskTimer: any = useRef();
-  const [isEmptyTask, setEmptyTask] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const openEmptyWarning = () => {
-    setEmptyTask(true);
+  const onOpenModal = () => {
+    setIsOpenModal(true);
   };
-  const closeEmptyWarning = () => {
-    setEmptyTask(false);
+  const onCloseModal = () => {
+    setIsOpenModal(false);
   };
 
   const { taskName, timeSpend, timeStart: activeTimer } = currentTask;
@@ -61,7 +61,7 @@ const Timer = ({
   }, [activeTimer]);
 
   const inactivateListener =
-    taskName.trim() === '' ? openEmptyWarning : inactivateTimer;
+    taskName.trim() === '' ? onOpenModal : inactivateTimer;
 
   const listener = activeTimer !== 0 ? inactivateListener : activateTimer;
 
@@ -82,8 +82,8 @@ const Timer = ({
         {activeTimer ? 'Stop' : 'Start'}
       </Button>
       <EmptyTaskWarning
-        isEmptyTask={isEmptyTask}
-        closeEmptyWarning={closeEmptyWarning}
+        isOpen={isOpenModal}
+        onClose={onCloseModal}
       />
     </ColumnWrapper>
   );

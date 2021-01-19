@@ -11,16 +11,13 @@ import { EmptyTaskWarningProps } from '../../../interfaces/Props';
 // styles
 import { useStyles } from './mui-styles';
 
-const EmptyTaskWarning = ({
-  isEmptyTask,
-  closeEmptyWarning,
-}: EmptyTaskWarningProps) => {
+const EmptyTaskWarning = ({ isOpen, onClose }: EmptyTaskWarningProps) => {
   const classes = useStyles();
 
   return (
     <Dialog
-      open={isEmptyTask}
-      onClose={() => closeEmptyWarning()}
+      open={isOpen}
+      onClose={() => onClose()}
       aria-labelledby="dialog-title"
     >
       <DialogTitle id="dialog-title" className={classes.dialogTitle}>
@@ -33,7 +30,7 @@ const EmptyTaskWarning = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => closeEmptyWarning()} className={classes.button}>
+        <Button onClick={() => onClose()} className={classes.button}>
           Close
         </Button>
       </DialogActions>
