@@ -9,11 +9,6 @@ const App: React.FC = () => {
   return (
     <Switch>
       <Route exact path={["/", "/tasks_chart"]} component={Main} />
-      {/*<Route
-        exact
-        path="/tasks_chart"
-        component={Main}
-      />*/}
       <Route
         path="/task/:number"
         render={({ match }) => {

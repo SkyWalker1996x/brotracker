@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
-import { store } from '../../store';
 // components
 import ColumnWrapper from '../Wrappers/ColumnWrapper/ColumnWrapper';
 import CircleWrapper from '../Wrappers/CircleWrapper/CircleWrapper';
@@ -19,7 +18,6 @@ import {
 } from '../../store/actions/activeTimerActions';
 // utils
 import { extractSpendTime } from '../../utils/timesManipulationUtils';
-import { saveToLocalStorage } from '../../utils/localStorageUtils';
 // interfaces
 import { State } from '../../interfaces/Store';
 import { TimerProps } from '../../interfaces/Props';
@@ -50,7 +48,6 @@ const Timer = ({
   useEffect(() => {
     if (activeTimer !== 0) {
       taskTimer.current = setInterval(() => {
-        saveToLocalStorage(store.getState());
         updateTimeSpend();
       }, 1000);
     }
@@ -58,6 +55,8 @@ const Timer = ({
     if (activeTimer === 0) {
       clearInterval(taskTimer.current);
     }
+
+    return () => clearInterval(taskTimer.current);
   }, [activeTimer]);
 
   const inactivateListener =
@@ -81,10 +80,7 @@ const Timer = ({
       >
         {activeTimer ? 'Stop' : 'Start'}
       </Button>
-      <EmptyTaskWarning
-        isOpen={isOpenModal}
-        onClose={onCloseModal}
-      />
+      <EmptyTaskWarning isOpen={isOpenModal} onClose={onCloseModal} />
     </ColumnWrapper>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 // MUI-components
 import AppBar from '@material-ui/core/AppBar';
@@ -18,10 +18,6 @@ const TimerTabs: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const { pathname } = useLocation();
-
-  useEffect(() => {
-
-  }, [pathname]);
 
   return (
     <div>
